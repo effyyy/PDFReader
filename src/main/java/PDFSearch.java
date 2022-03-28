@@ -30,15 +30,24 @@ public class PDFSearch {
 
 
         System.out.println("Enter Name of file with extension: (Make sure file is in the project directory)");
-        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in); //Taking filename as input
         String f = in.next();
+
+        //Starting up the OCR and getting text string from the image
         Ocr.setUp();
         Ocr ocr = new Ocr();
-        ocr.startEngine("eng",Ocr.SPEED_FASTEST);
+        ocr.startEngine("eng",Ocr.SPEED_FASTEST); //Selecting the language "English"
         String s = ocr.recognize(new File[] {new File(f)}, Ocr.RECOGNIZE_TYPE_TEXT, Ocr.OUTPUT_FORMAT_PLAINTEXT);
         ocr.stopEngine();
+        //Stop the OCR engine
+
+
+        //Getting hastable with all the words as keys
         Hashtable<String, Integer> hashtable = getHashtable(s);
+        //Simple variable to decide if while loop keeps running
         String toCont = "Y";
+
+        //Main loop, allows user to search for frequency of multiple words
         while(toCont.equals("Y")) {
             System.out.println("Enter Word to find frequency for : ");
             String toFind = in.next();
