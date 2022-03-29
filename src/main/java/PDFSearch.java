@@ -26,7 +26,7 @@ public class PDFSearch {
                 }
             }
         }catch (NullPointerException ex){
-            System.out.println("Please re-enter file name and make sure file has readable content");
+            System.out.println("Please re-enter file name and make sure file has readable content :");
             String newString = getStringFromPDF();
             return getHashtable(newString);
 
